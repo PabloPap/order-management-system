@@ -1,57 +1,65 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import * as orderActions from '../../redux/actions/orderActions';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
 
-const OrdersPage = () => {
-  const [item, setItem] = useState('');
-  const [id, setId] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(item);
+class OrdersPage extends React.Component {
+  state = {
+    order: {
+      title: '',
+    },
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <h2>Orders</h2>
-      <h3>Add Order</h3>
-      <div>
-        <label htmlFor="">Country</label>
-        <input
-          name="item"
-          type="text"
-          value={item}
-          onChange={(e) => setItem(e.target.value)}
-        />
-      </div>
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.actions.createOrder(this.state.order);
+  };
 
-      <div>
-        <label htmlFor="">Order ID</label>
+  handleChange = (e) => {
+    const order = { ...this.state.order, title: e.target.value };
+    this.setState({ order });
+  };
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <h2>Orders</h2>
+        <h3>Add Order</h3>
         <div>
+          <label>add an order</label>
           <input
+            name="order"
             type="text"
-            name="orderId"
-            placeholder=""
-            value={id}
-            onChange=""
+            value={this.state.order.title}
+            onChange={this.handleChange}
           />
         </div>
-      </div>
+        <button type="submit">Save</button>
 
-      <div>
-        <label htmlFor="">Status</label>
-        <select
-          name="name"
-          value="value"
-          onChange={(e) => setItem(e.target.value)}
-        >
-          <option value="">Select Status</option>
-          <option value="pending">Pending</option>
-          <option value="completed">Completed</option>
-          <option value="Cancelled">Cancelled</option>
-        </select>
-      </div>
-      <button type="submit">Save</button>
-    </form>
-  );
+        {this.props.orders.map((order) => (
+          <div key={order.title}>{order.title}</div>
+        ))}
+      </form>
+    );
+  }
+}
+
+OrdersPage.propTypes = {
+  orders: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
-export default OrdersPage;
+function mapStateToProps(state) {
+  return {
+    orders: state.orders,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(orderActions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrdersPage);
