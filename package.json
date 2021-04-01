@@ -16,7 +16,10 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "run-p start:dev start:api",
+    "start:dev": "react-scripts start",
+    "prestart:api": "node json-server/createMockDb.js",
+    "start:api": "node json-server/apiServer.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -40,6 +43,8 @@
     ]
   },
   "devDependencies": {
+    "json-server": "^0.16.3",
+    "npm-run-all": "^4.1.5",
     "redux-immutable-state-invariant": "^2.1.0"
   }
 }
