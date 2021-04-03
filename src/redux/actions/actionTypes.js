@@ -1,1 +1,2 @@
 export const CREATE__ORDER = 'CREATE_ORDER';
+export const LOAD_ORDERS_SUCCESS = 'LOAD_ORDERS_SUCCESS';
