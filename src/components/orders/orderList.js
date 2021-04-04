@@ -16,7 +16,7 @@ const OrderList = ({ orders }) => (
             <Link to={'/order/' + order.slug}>{order.title}</Link>
           </li>
           <li>{order.orderId}</li>
-          <li>{order.status}</li>
+          <li>{order.orderStatus}</li>
         </ul>
       );
     })}
