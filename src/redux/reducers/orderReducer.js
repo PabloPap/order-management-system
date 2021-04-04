@@ -1,6 +1,7 @@
 import * as types from '../actions/actionTypes';
+import initialState from './initialState';
 
-export default function orderReducer(state = [], action) {
+export default function orderReducer(state = initialState.orders, action) {
   switch (action.type) {
     case types.CREATE__ORDER:
       return [...state, { ...action.order }];
