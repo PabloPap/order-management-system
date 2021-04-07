@@ -4,9 +4,8 @@ import * as orderActions from '../../redux/actions/orderActions';
 import * as statusActions from '../../redux/actions/statusActions';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import OrderList from './orderList';
 
-function OrdersPage({ actions, statusAll, orders }) {
+function ManageOrderPage({ actions, statusAll, orders }) {
   useEffect(() => {
     if (orders.length === 0) {
       actions.loadOrders().catch((error) => {
@@ -23,24 +22,20 @@ function OrdersPage({ actions, statusAll, orders }) {
 
   return (
     <>
-      <h2>Orders</h2>
-      <OrderList orders={orders} />
+      <h2>Manage Order</h2>
     </>
   );
 }
 
+ManageOrderPage.propTypes = {
+  orders: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  statusAll: PropTypes.array.isRequired,
+};
+
 function mapStateToProps(state) {
   return {
-    orders:
-      state.statusAll.length === 0
-        ? []
-        : state.orders.map((order) => {
-            return {
-              ...order,
-              orderStatus: state.statusAll.find((s) => s.id === order.status)
-                .name,
-            };
-          }),
+    orders: state.orders,
     statusAll: state.statusAll,
   };
 }
@@ -54,4 +49,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrdersPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageOrderPage);
