@@ -4,7 +4,7 @@ import * as orderActions from '../../redux/actions/orderActions';
 import * as statusActions from '../../redux/actions/statusActions';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import OrderList from './orderList';
+import OrderList from './OrderList';
 
 function OrdersPage({ actions, statusAll, orders }) {
   useEffect(() => {

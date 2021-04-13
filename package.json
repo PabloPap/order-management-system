@@ -19,8 +19,8 @@
   "scripts": {
     "start": "run-p start:dev start:api",
     "start:dev": "react-scripts start",
-    "prestart:api": "node json-server/createMockDb.js",
-    "start:api": "node json-server/apiServer.js",
+    "prestart:api": "node src/jsonServer/createMockDb.js",
+    "start:api": "node src/jsonServer/apiServer.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
