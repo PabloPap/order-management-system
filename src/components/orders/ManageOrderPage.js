@@ -7,14 +7,17 @@ import { bindActionCreators } from 'redux';
 import OrderForm from './OrderForm';
 import { newOrder } from '../../jsonServer/mockData';
 
-function ManageOrderPage({ actions, statusAll, orders, ...props }) {
+function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
   const [order, setOrder] = useState({ ...props.order });
   const [errors, setErrors] = useState({});
+
   useEffect(() => {
     if (orders.length === 0) {
       actions.loadOrders().catch((error) => {
         alert('Loading all status failed' + error);
       });
+    } else {
+      setOrder({ ...props.order });
     }
 
     if (statusAll.length === 0) {
@@ -22,14 +25,22 @@ function ManageOrderPage({ actions, statusAll, orders, ...props }) {
         alert('Loading all status failed' + error);
       });
     }
-  }, []);
+  }, [props.order]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setOrder((prevOrder) => ({
       ...prevOrder,
-      [name]: name === 'statusAll' ? parseInt(value, 10) : value,
+      [name]: name === 'status' ? parseInt(value, 10) : value,
     }));
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+    // console.log(order);
+    actions.saveOrder(order).then(() => {
+      history.push('/orders');
+    });
   };
 
   return (
@@ -38,6 +49,7 @@ function ManageOrderPage({ actions, statusAll, orders, ...props }) {
       errors={errors}
       statusAll={statusAll}
       onChange={handleChange}
+      onSave={handleSave}
     />
   );
 }
@@ -47,11 +59,21 @@ ManageOrderPage.propTypes = {
   orders: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   statusAll: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-function mapStateToProps(state) {
+export function getOrderBySlug(orders, slug) {
+  return orders.find((order) => order.slug === slug) || null;
+}
+
+function mapStateToProps(state, ownProps) {
+  const slug = ownProps.match.params.slug;
+  const order =
+    slug && state.orders.length > 0
+      ? getOrderBySlug(state.orders, slug)
+      : newOrder;
   return {
-    order: newOrder,
+    order,
     orders: state.orders,
     statusAll: state.statusAll,
   };
@@ -62,6 +84,7 @@ function mapDispatchToProps(dispatch) {
     actions: {
       loadOrders: bindActionCreators(orderActions.loadOrders, dispatch),
       loadStatusAll: bindActionCreators(statusActions.loadStatusAll, dispatch),
+      saveOrder: bindActionCreators(orderActions.saveOrder, dispatch),
     },
   };
 }

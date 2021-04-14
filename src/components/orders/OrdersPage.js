@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import * as orderActions from '../../redux/actions/orderActions';
 import * as statusActions from '../../redux/actions/statusActions';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import OrderList from './OrderList';
+import { Redirect, redirect } from 'react-router-dom';
 
 function OrdersPage({ actions, statusAll, orders }) {
+  const [redirectToAddOrderPage, setRedirectToAddOrderPage] = useState(false);
   useEffect(() => {
     if (orders.length === 0) {
       actions.loadOrders().catch((error) => {
@@ -23,7 +25,11 @@ function OrdersPage({ actions, statusAll, orders }) {
 
   return (
     <>
+      {redirectToAddOrderPage && <Redirect to="/order" />}
       <h2>Orders</h2>
+      <button className="" onClick={() => setRedirectToAddOrderPage(true)}>
+        Add Order
+      </button>
       <OrderList orders={orders} />
     </>
   );

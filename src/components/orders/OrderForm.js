@@ -18,21 +18,21 @@ const OrderForm = ({
       <TextInput
         name="title"
         label="Title"
-        value={order.title}
+        value={order.title || ''}
         onChange={onChange}
         error={errors.title}
       />
       <TextInput
         name="orderId"
         label="Order ID"
-        value={order.orderId}
+        value={order.orderId || ''}
         onChange={onChange}
         error={errors.orderId}
       />
       <SelectInput
-        name="statusAll"
+        name="status"
         label="Status"
-        value={order.statusAll || ''}
+        value={order.status || ''}
         defaultOption="Select Status"
         options={statusAll.map((status) => ({
           value: status.id,
