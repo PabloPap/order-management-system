@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import OrderList from './OrderList';
 import { Redirect, redirect } from 'react-router-dom';
+import Spinner from '../shared/Spinner';
 
 function OrdersPage({ actions, statusAll, orders }) {
   const [redirectToAddOrderPage, setRedirectToAddOrderPage] = useState(false);
@@ -27,6 +28,7 @@ function OrdersPage({ actions, statusAll, orders }) {
     <>
       {redirectToAddOrderPage && <Redirect to="/order" />}
       <h2>Orders</h2>
+      <Spinner />
       <button className="" onClick={() => setRedirectToAddOrderPage(true)}>
         Add Order
       </button>

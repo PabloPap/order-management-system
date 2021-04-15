@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import { beginApiCall } from './apiStatusActions';
 
 const baseUrl = 'http://localhost:3001/statusAll/';
 
@@ -8,6 +9,7 @@ export function loadStatusAllSuccess(statusAll) {
 
 export function loadStatusAll() {
   return function (dispatch) {
+    dispatch(beginApiCall());
     return fetch(baseUrl)
       .then(async (response) => {
         if (response.ok) return response.json();

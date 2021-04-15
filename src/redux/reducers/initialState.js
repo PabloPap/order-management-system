@@ -2,4 +2,5 @@
 export default {
   orders: [],
   statusAll: [],
+  apiCallsInProgress: 0,
 };

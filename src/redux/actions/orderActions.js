@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import { beginApiCall } from './apiStatusActions';
 
 // Action creator function
 // export function createOrder(order) {
@@ -21,6 +22,8 @@ const baseUrl = 'http://localhost:3001/orders/';
 
 export function loadOrders() {
   return function (dispatch) {
+    dispatch(beginApiCall());
+
     return fetch(baseUrl)
       .then(async (response) => {
         if (response.ok) return response.json();
@@ -44,6 +47,8 @@ export function loadOrders() {
 export function saveOrder(order) {
   return function (dispatch, getState) {
     // console.log(order);
+    dispatch(beginApiCall());
+
     return fetch(baseUrl + (order.id || ''), {
       // POST for create, PUT to update when id already exists.
       method: order.id ? 'PUT' : 'POST',
