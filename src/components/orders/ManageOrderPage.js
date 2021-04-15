@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import OrderForm from './OrderForm';
 import { newOrder } from '../../jsonServer/mockData';
+import Spinner from '../shared/Spinner';
 
 function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
   const [order, setOrder] = useState({ ...props.order });
   const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (orders.length === 0) {
@@ -37,19 +39,23 @@ function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
 
   const handleSave = (event) => {
     event.preventDefault();
+    setSaving(true);
     // console.log(order);
     actions.saveOrder(order).then(() => {
       history.push('/orders');
     });
   };
 
-  return (
+  return orders.length === 0 || statusAll.length === 0 ? (
+    <Spinner />
+  ) : (
     <OrderForm
       order={order}
       errors={errors}
       statusAll={statusAll}
       onChange={handleChange}
       onSave={handleSave}
+      saving={saving}
     />
   );
 }

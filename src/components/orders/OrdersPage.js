@@ -8,7 +8,7 @@ import OrderList from './OrderList';
 import { Redirect, redirect } from 'react-router-dom';
 import Spinner from '../shared/Spinner';
 
-function OrdersPage({ actions, statusAll, orders }) {
+function OrdersPage({ actions, statusAll, orders, loading }) {
   const [redirectToAddOrderPage, setRedirectToAddOrderPage] = useState(false);
   useEffect(() => {
     if (orders.length === 0) {
@@ -28,14 +28,26 @@ function OrdersPage({ actions, statusAll, orders }) {
     <>
       {redirectToAddOrderPage && <Redirect to="/order" />}
       <h2>Orders</h2>
-      <Spinner />
-      <button className="" onClick={() => setRedirectToAddOrderPage(true)}>
-        Add Order
-      </button>
-      <OrderList orders={orders} />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <button className="" onClick={() => setRedirectToAddOrderPage(true)}>
+            Add Order
+          </button>
+          <OrderList orders={orders} />
+        </>
+      )}
     </>
   );
 }
+
+OrdersPage.propTypes = {
+  statusAll: PropTypes.array.isRequired,
+  orders: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
 function mapStateToProps(state) {
   return {
@@ -50,6 +62,7 @@ function mapStateToProps(state) {
             };
           }),
     statusAll: state.statusAll,
+    loading: state.apiCallsInProgress > 0,
   };
 }
 
