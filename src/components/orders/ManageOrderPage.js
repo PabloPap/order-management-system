@@ -7,11 +7,15 @@ import { bindActionCreators } from 'redux';
 import OrderForm from './OrderForm';
 import { newOrder } from '../../jsonServer/mockData';
 import Spinner from '../shared/Spinner';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
   const [order, setOrder] = useState({ ...props.order });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
+
+  const MySwal = withReactContent(Swal);
 
   useEffect(() => {
     if (orders.length === 0) {
@@ -42,6 +46,14 @@ function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
     setSaving(true);
     // console.log(order);
     actions.saveOrder(order).then(() => {
+      MySwal.fire({
+        title: <p>Order Saved!</p>,
+        icon: 'success',
+        timer: 3000,
+        toast: true,
+        position: 'top-right',
+        showConfirmButton: false,
+      });
       history.push('/orders');
     });
   };
