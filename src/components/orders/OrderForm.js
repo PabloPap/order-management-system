@@ -14,7 +14,7 @@ const OrderForm = ({
   return (
     <form onSubmit={onSave}>
       <h2>{order.id ? 'Edit' : 'Add'} Order</h2>
-      {errors.onSave && <div>{errors.onSave}</div>}
+      {errors.onSave && <p>{errors.onSave}</p>}
       <TextInput
         name="title"
         label="Title"

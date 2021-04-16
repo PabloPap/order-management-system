@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import { beginApiCall } from './apiStatusActions';
+import { beginApiCall, apiCallError } from './apiStatusActions';
 
 const baseUrl = 'http://localhost:3001/statusAll/';
 
@@ -23,8 +23,7 @@ export function loadStatusAll() {
         dispatch(loadStatusAllSuccess(statusAll));
       })
       .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error('API call failed. ' + error);
+        dispatch(apiCallError(error));
         throw error;
       });
   };

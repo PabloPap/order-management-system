@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import { beginApiCall } from './apiStatusActions';
+import { beginApiCall, apiCallError } from './apiStatusActions';
 
 // Action creator function
 // export function createOrder(order) {
@@ -37,8 +37,7 @@ export function loadOrders() {
         dispatch(loadOrdersSuccess(orders));
       })
       .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error('API call failed. ' + error);
+        dispatch(apiCallError(error));
         throw error;
       });
   };
@@ -69,8 +68,7 @@ export function saveOrder(order) {
           : dispatch(createOrderSuccess(savedOrder));
       })
       .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error('API call failed. ' + error);
+        dispatch(apiCallError(error));
         throw error;
       });
   };

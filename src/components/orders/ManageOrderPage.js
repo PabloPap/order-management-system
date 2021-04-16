@@ -45,17 +45,23 @@ function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
     event.preventDefault();
     setSaving(true);
     // console.log(order);
-    actions.saveOrder(order).then(() => {
-      MySwal.fire({
-        title: <p>Order Saved!</p>,
-        icon: 'success',
-        timer: 3000,
-        toast: true,
-        position: 'top-right',
-        showConfirmButton: false,
+    actions
+      .saveOrder(order)
+      .then(() => {
+        MySwal.fire({
+          title: <p>Order Saved!</p>,
+          icon: 'success',
+          timer: 3000,
+          toast: true,
+          position: 'top-right',
+          showConfirmButton: false,
+        });
+        history.push('/orders');
+      })
+      .catch((error) => {
+        setSaving(false);
+        setErrors({ onSave: error.message });
       });
-      history.push('/orders');
-    });
   };
 
   return orders.length === 0 || statusAll.length === 0 ? (
