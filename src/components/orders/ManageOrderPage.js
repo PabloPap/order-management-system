@@ -41,8 +41,21 @@ function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
     }));
   };
 
+  const formIsValid = () => {
+    const { title, orderId, status } = order;
+    const errors = {};
+
+    if (!title) errors.title = 'Title is required.';
+    if (!orderId) errors.orderId = 'Order ID is required.';
+    if (!status) errors.status = 'Status is required.';
+
+    setErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSave = (event) => {
     event.preventDefault();
+    if (!formIsValid()) return;
     setSaving(true);
     // console.log(order);
     actions

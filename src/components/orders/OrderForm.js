@@ -39,7 +39,7 @@ const OrderForm = ({
           text: status.name,
         }))}
         onChange={onChange}
-        error={errors.statusAll}
+        error={errors.status}
       />
 
       <button type="submit" disabled={saving}>
