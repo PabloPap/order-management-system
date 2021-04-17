@@ -72,7 +72,7 @@ function createSlug(value) {
 
 function validateOrder(order) {
   if (!order.title) return 'Title is required.';
-  if (!order.orderId) return 'Order Id is required.';
+  if (!order.orderNum) return 'Order Id is required.';
   if (!order.status) return 'Status is required.';
   return '';
 }
