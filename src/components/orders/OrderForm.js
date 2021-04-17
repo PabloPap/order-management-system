@@ -23,11 +23,11 @@ const OrderForm = ({
         error={errors.title}
       />
       <TextInput
-        name="orderId"
+        name="orderNum"
         label="Order ID"
-        value={order.orderId || ''}
+        value={order.orderNum || ''}
         onChange={onChange}
-        error={errors.orderId}
+        error={errors.orderNum}
       />
       <SelectInput
         name="status"

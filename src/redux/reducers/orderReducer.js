@@ -11,6 +11,8 @@ export default function orderReducer(state = initialState.orders, action) {
       );
     case types.LOAD_ORDERS_SUCCESS:
       return action.orders;
+    case types.DELETE_ORDER_OPTIMISTIC:
+      return state.filter((order) => order.id !== action.order.id);
     default:
       return state;
   }

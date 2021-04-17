@@ -18,6 +18,10 @@ export function createOrderSuccess(order) {
   return { type: types.CREATE_ORDER_SUCCESS, order };
 }
 
+export function deleteOrderOptimistic(order) {
+  return { type: types.DELETE_ORDER_OPTIMISTIC, order };
+}
+
 const baseUrl = 'http://localhost:3001/orders/';
 
 export function loadOrders() {
@@ -71,5 +75,26 @@ export function saveOrder(order) {
         dispatch(apiCallError(error));
         throw error;
       });
+  };
+}
+
+export function deleteOrder(order) {
+  return function (dispatch) {
+    // optimistic delete, not dispatching api call actions
+    // since we are not showing loading status for this
+    dispatch(deleteOrderOptimistic(order));
+    return fetch(baseUrl + 1000, { method: 'DELETE' });
+    // .then(async (response) => {
+    //   if (response.ok) return response.json();
+    //   if (response.status === 400) {
+    //     const error = await response.text();
+    //     throw new Error(error);
+    //   }
+    //   throw new Error('Network response was not ok.');
+    // })
+    // .catch((error) => {
+    //   dispatch(apiCallError(error));
+    //   throw error;
+    // });
   };
 }

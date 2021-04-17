@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const OrderList = ({ orders }) => (
+const OrderList = ({ orders, onDeleteClick }) => (
   <div className="orders">
     <ul className="orders__header">
       <li>Title</li>
@@ -15,8 +15,11 @@ const OrderList = ({ orders }) => (
           <li>
             <Link to={'/order/' + order.slug}>{order.title}</Link>
           </li>
-          <li>{order.orderId}</li>
+          <li>{order.orderNum}</li>
           <li>{order.orderStatus}</li>
+          <li>
+            <button onClick={() => onDeleteClick(order)}>Delete</button>
+          </li>
         </ul>
       );
     })}
@@ -25,6 +28,7 @@ const OrderList = ({ orders }) => (
 
 OrderList.propTypes = {
   orders: PropTypes.array.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
 };
 
 export default OrderList;

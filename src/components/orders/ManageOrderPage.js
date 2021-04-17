@@ -42,11 +42,11 @@ function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
   };
 
   const formIsValid = () => {
-    const { title, orderId, status } = order;
+    const { title, orderNum, status } = order;
     const errors = {};
 
     if (!title) errors.title = 'Title is required.';
-    if (!orderId) errors.orderId = 'Order ID is required.';
+    if (!orderNum) errors.orderNum = 'Order ID is required.';
     if (!status) errors.status = 'Status is required.';
 
     setErrors(errors);
