@@ -7,8 +7,7 @@ import { bindActionCreators } from 'redux';
 import OrderList from './OrderList';
 import { Redirect } from 'react-router-dom';
 import Spinner from '../shared/Spinner';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
+import { toast } from 'react-toastify';
 
 function OrdersPage({ actions, statusAll, orders, loading }) {
   const [redirectToAddOrderPage, setRedirectToAddOrderPage] = useState(false);
@@ -26,21 +25,14 @@ function OrdersPage({ actions, statusAll, orders, loading }) {
     }
   }, []);
 
-  const MySwal = withReactContent(Swal);
-
-  const handleDeleteOrder = (order) => {
-    MySwal.fire({
-      title: <p>Order Deleted!</p>,
-      icon: 'success',
-      timer: 1000,
-      toast: true,
-      position: 'top-right',
-      showConfirmButton: false,
-    });
-
-    actions.deleteOrder(order).catch((error) => {
-      MySwal.update({ icon: 'error', timer: 4000 });
-    });
+  const handleDeleteOrder = async (order) => {
+    toast.success('Order deleted!');
+    try {
+      await actions.deleteOrder(order);
+    } catch (error) {
+      debugger;
+      toast.error('Delete failed. ' + error.message, { autoClose: false });
+    }
   };
 
   return (
@@ -60,6 +52,13 @@ function OrdersPage({ actions, statusAll, orders, loading }) {
     </>
   );
 }
+
+OrdersPage.propTypes = {
+  orders: PropTypes.array.isRequired,
+  statusAll: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

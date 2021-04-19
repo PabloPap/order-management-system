@@ -1,11 +1,6 @@
 import * as types from './actionTypes';
 import { beginApiCall, apiCallError } from './apiStatusActions';
 
-// Action creator function
-// export function createOrder(order) {
-//   return { type: types.CREATE_ORDER, order };
-// }
-
 export function loadOrdersSuccess(orders) {
   return { type: types.LOAD_ORDERS_SUCCESS, orders };
 }
@@ -49,7 +44,6 @@ export function loadOrders() {
 
 export function saveOrder(order) {
   return function (dispatch, getState) {
-    // console.log(order);
     dispatch(beginApiCall());
 
     return fetch(baseUrl + (order.id || ''), {
@@ -83,18 +77,18 @@ export function deleteOrder(order) {
     // optimistic delete, not dispatching api call actions
     // since we are not showing loading status for this
     dispatch(deleteOrderOptimistic(order));
-    return fetch(baseUrl + 1000, { method: 'DELETE' });
-    // .then(async (response) => {
-    //   if (response.ok) return response.json();
-    //   if (response.status === 400) {
-    //     const error = await response.text();
-    //     throw new Error(error);
-    //   }
-    //   throw new Error('Network response was not ok.');
-    // })
-    // .catch((error) => {
-    //   dispatch(apiCallError(error));
-    //   throw error;
-    // });
+    return fetch(baseUrl + order.id, { method: 'DELETE' })
+      .then(async (response) => {
+        if (response.ok) return response.json();
+        if (response.status === 400) {
+          const error = await response.text();
+          throw new Error(error);
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .catch((error) => {
+        dispatch(apiCallError(error));
+        throw error;
+      });
   };
 }
