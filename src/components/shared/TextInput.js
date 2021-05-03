@@ -9,18 +9,19 @@ const TextInput = ({ name, label, value, error, onChange, placeholder }) => {
 
   return (
     <div className={groupClass}>
-      <label htmlFor={name}>{label}</label>
-      <div className="">
-        <input
-          type="text"
-          name={name}
-          className=""
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-        />
-        {error && <div className="">{error}</div>}
-      </div>
+      <input
+        type="text"
+        name={name}
+        className=""
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
+      <label htmlFor={name} className="form__group--label">
+        {label}
+      </label>
+      <i class="form__group--bar"></i>
+      {error && <div>{error}</div>}
     </div>
   );
 };

@@ -1,0 +1,24 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include section(25vh, relative, $background: $primary-light);
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    @include section(auto, relative, $width: 65%);
+
+    img {
+      border: 1px solid red !important;
+    }
+  }
+
+  @include respond(big-laptop) {
+    // padding: 12.5rem 0;
+    // padding-top: 5rem;
+    // margin-top: 2rem;
+  }
+}

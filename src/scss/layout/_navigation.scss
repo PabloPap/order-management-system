@@ -1,0 +1,47 @@
+.navigation {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100px;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  position: relative;
+  transition: transform 0.5s ease-in;
+  background-color: transparent;
+  z-index: 10000;
+  border-bottom: 1px solid $primary-color;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+
+    li {
+      margin-left: 0;
+      text-align: center;
+
+      &:not(:first-child) {
+        margin-top: 3rem;
+      }
+
+      a {
+        font-size: 0.9rem;
+        color: $color-text-light;
+        letter-spacing: 1.1px;
+        padding: 0 1rem;
+      }
+
+      @include respond(laptop) {
+        &:not(:first-child) {
+          margin-top: 0;
+        }
+
+        a {
+          @include fluid-type(14px, 15px);
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

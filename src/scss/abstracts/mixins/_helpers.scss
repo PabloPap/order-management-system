@@ -1,0 +1,30 @@
+@mixin absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute($top, $left, $right, $bottom) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+@mixin box-shadow($shadow...) {
+  box-shadow: $shadow;
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin section($height, $position, $background: null, $width: null) {
+  height: $height;
+  width: $width;
+  background: $background;
+  position: $position;
+}

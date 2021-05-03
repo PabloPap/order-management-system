@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+@import 'scss/abstracts/variables';
+@import 'scss/abstracts/mixins';
+
+@import 'scss/base/base';
+
+@import 'scss/layout/grid';
+@import 'scss/layout/navigation';
+
+@import 'scss/pages/home';
+@import 'scss/pages/orderList';
+
+@import 'scss/components/button';
+@import 'scss/components/table';
+@import 'scss/components/form';

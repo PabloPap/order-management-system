@@ -12,20 +12,22 @@ const SelectInput = ({
 }) => {
   return (
     <div className="form__group">
-      <label htmlFor={name}>{label}</label>
-      <div className="">
-        <select name={name} className="" value={value} onChange={onChange}>
-          <option value="">{defaultOption}</option>
-          {options.map((option) => {
-            return (
-              <option key={option.value} value={option.value}>
-                {option.text}
-              </option>
-            );
-          })}
-        </select>
-        {error && <div className="">{error}</div>}
-      </div>
+      <select name={name} value={value} onChange={onChange}>
+        <option value="">{defaultOption}</option>
+        {options.map((option) => {
+          return (
+            <option key={option.value} value={option.value}>
+              {option.text}
+            </option>
+          );
+        })}
+      </select>
+      <label htmlFor={name} className="form__group--label">
+        {label}
+      </label>
+      <i class="form__group--bar"></i>
+
+      {error && <div className="">{error}</div>}
     </div>
   );
 };

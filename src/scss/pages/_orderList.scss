@@ -1,0 +1,19 @@
+.orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // width: 600px;
+
+  &__manage {
+    width: 35rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2rem 0;
+  }
+
+  &__table {
+    width: 100%;
+    max-width: 800px;
+  }
+}

@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 const HomePage = () => {
   return (
     <>
-      <h1 className="title">Admin Dashboard</h1>
-      <div>
-        <Link to="">Manage Customer Orders</Link>
+      <div className="home">
+        <h1 className="home__header">Admin Dashboard</h1>
+        <div className="home__title">
+          <Link to="" className="btn btn--primary">
+            Manage Customer Orders
+          </Link>
+        </div>
       </div>
     </>
   );

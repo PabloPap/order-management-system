@@ -1,0 +1,46 @@
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+
+  @include respond(phone) {
+    font-size: 62.5%; //1rem = 10px, 10/16 = 62.5%
+  }
+
+  @include respond(tablet) {
+    font-size: 75%; //1rem = 12px, 12/16 = 75%
+  }
+
+  @include respond(desktop) {
+    font-size: 87.5%; //1rem = 14px, 14/16 = 87.5%
+  }
+
+  @include respond(big-desktop) {
+    font-size: 100%; //1rem = 16px, 16/16 = 100%
+  }
+}
+
+body {
+  line-height: 1.4;
+  z-index: 0;
+  // min-height: 100vh;
+  background-color: #dce0e7;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+}

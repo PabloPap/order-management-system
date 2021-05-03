@@ -3,26 +3,38 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const OrderList = ({ orders, onDeleteClick }) => (
-  <div className="orders">
-    <ul className="orders__header">
-      <li>Title</li>
-      <li>Order_ID</li>
-      <li>Status</li>
-    </ul>
-    {orders.map((order) => {
-      return (
-        <ul className="orders__list" key={order.id}>
-          <li>
-            <Link to={'/order/' + order.slug}>{order.title}</Link>
-          </li>
-          <li>{order.orderNum}</li>
-          <li>{order.orderStatus}</li>
-          <li>
-            <button onClick={() => onDeleteClick(order)}>Delete</button>
-          </li>
-        </ul>
-      );
-    })}
+  <div className="orders__table">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Order_ID</th>
+          <th scope="col">Status</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {orders.map((order) => {
+          return (
+            <tr key={order.id}>
+              <td data-label="Title">
+                <Link to={'/order/' + order.slug}>{order.title}</Link>
+              </td>
+              <td data-label="Order_ID">{order.orderNum}</td>
+              <td data-label="Status">{order.orderStatus}</td>
+              <td>
+                <button
+                  className="btn btn--danger"
+                  onClick={() => onDeleteClick(order)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   </div>
 );
 

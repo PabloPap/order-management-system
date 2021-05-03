@@ -12,40 +12,43 @@ const OrderForm = ({
   errors = {},
 }) => {
   return (
-    <form onSubmit={onSave}>
-      <h2>{order.id ? 'Edit' : 'Add'} Order</h2>
-      {errors.onSave && <p>{errors.onSave}</p>}
-      <TextInput
-        name="title"
-        label="Title"
-        value={order.title || ''}
-        onChange={onChange}
-        error={errors.title}
-      />
-      <TextInput
-        name="orderNum"
-        label="Order ID"
-        value={order.orderNum || ''}
-        onChange={onChange}
-        error={errors.orderNum}
-      />
-      <SelectInput
-        name="status"
-        label="Status"
-        value={order.status || ''}
-        defaultOption="Select Status"
-        options={statusAll.map((status) => ({
-          value: status.id,
-          text: status.name,
-        }))}
-        onChange={onChange}
-        error={errors.status}
-      />
-
-      <button type="submit" disabled={saving}>
-        {saving ? 'Saving...' : 'Save'}
-      </button>
-    </form>
+    <div className="form">
+      <form onSubmit={onSave}>
+        <h1>{order.id ? 'Edit' : 'Add'} Order</h1>
+        {errors.onSave && <p>{errors.onSave}</p>}
+        <TextInput
+          name="title"
+          label="Title"
+          value={order.title || ''}
+          onChange={onChange}
+          error={errors.title}
+        />
+        <TextInput
+          name="orderNum"
+          label="Order ID"
+          value={order.orderNum || ''}
+          onChange={onChange}
+          error={errors.orderNum}
+        />
+        <SelectInput
+          name="status"
+          label="Status"
+          value={order.status || ''}
+          defaultOption="Select Status"
+          options={statusAll.map((status) => ({
+            value: status.id,
+            text: status.name,
+          }))}
+          onChange={onChange}
+          error={errors.status}
+        />
+        <div className="form__button">
+          <button type="submit" disabled={saving}>
+            <span>{saving ? 'Saving...' : 'Save'}</span>
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 

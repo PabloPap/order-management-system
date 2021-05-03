@@ -38,17 +38,23 @@ function OrdersPage({ actions, statusAll, orders, loading }) {
   return (
     <>
       {redirectToAddOrderPage && <Redirect to="/order" />}
-      <h2>Orders</h2>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          <button className="" onClick={() => setRedirectToAddOrderPage(true)}>
+      <div className="orders">
+        <div className="orders__manage">
+          <h1 className="orders__title">Manage All Orders</h1>
+          <button
+            className="orders__button btn btn--primary"
+            onClick={() => setRedirectToAddOrderPage(true)}
+          >
             Add Order
           </button>
+        </div>
+
+        {loading ? (
+          <Spinner />
+        ) : (
           <OrderList orders={orders} onDeleteClick={handleDeleteOrder} />
-        </>
-      )}
+        )}
+      </div>
     </>
   );
 }
