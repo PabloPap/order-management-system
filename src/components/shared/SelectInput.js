@@ -27,7 +27,7 @@ const SelectInput = ({
       </label>
       <i class="form__group--bar"></i>
 
-      {error && <div className="">{error}</div>}
+      {error && <div className="alert alert-danger">{error}</div>}
     </div>
   );
 };

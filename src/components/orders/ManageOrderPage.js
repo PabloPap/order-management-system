@@ -9,7 +9,13 @@ import { newOrder } from '../../jsonServer/mockData';
 import Spinner from '../shared/Spinner';
 import { toast } from 'react-toastify';
 
-function ManageOrderPage({ actions, statusAll, orders, history, ...props }) {
+export function ManageOrderPage({
+  actions,
+  statusAll,
+  orders,
+  history,
+  ...props
+}) {
   const [order, setOrder] = useState({ ...props.order });
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
