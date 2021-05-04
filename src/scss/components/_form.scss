@@ -44,7 +44,7 @@
       border-color: transparent;
       line-height: 1.9;
       width: 100%;
-      color: transparent;
+      color: #333;
       transition: all 0.28s ease;
       box-shadow: none;
 
@@ -56,17 +56,12 @@
         }
       }
 
-      &:focus,
-      &:valid {
-        color: #333;
-
-        & ~ .form__group--label {
-          font-size: 0.9rem;
-          color: gray;
-          top: -1rem;
-          left: 0;
-          color: $primary-color;
-        }
+      & ~ .form__group--label {
+        font-size: 0.9rem;
+        color: gray;
+        top: -1rem;
+        left: 0;
+        color: $primary-color;
       }
     }
 
