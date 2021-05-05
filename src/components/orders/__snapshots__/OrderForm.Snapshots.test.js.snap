@@ -28,7 +28,7 @@ exports[`sets submit button label 'Save' when saving is false 1`] = `
         Title
       </label>
       <i
-        class="form__group--bar"
+        className="form__group--bar"
       />
     </div>
     <div
@@ -48,7 +48,7 @@ exports[`sets submit button label 'Save' when saving is false 1`] = `
         Order ID
       </label>
       <i
-        class="form__group--bar"
+        className="form__group--bar"
       />
     </div>
     <div
@@ -87,7 +87,7 @@ exports[`sets submit button label 'Save' when saving is false 1`] = `
         Status
       </label>
       <i
-        class="form__group--bar"
+        className="form__group--bar"
       />
     </div>
     <div
@@ -134,7 +134,7 @@ exports[`sets submit button label 'Saving...' when saving is true 1`] = `
         Title
       </label>
       <i
-        class="form__group--bar"
+        className="form__group--bar"
       />
     </div>
     <div
@@ -154,7 +154,7 @@ exports[`sets submit button label 'Saving...' when saving is true 1`] = `
         Order ID
       </label>
       <i
-        class="form__group--bar"
+        className="form__group--bar"
       />
     </div>
     <div
@@ -193,7 +193,7 @@ exports[`sets submit button label 'Saving...' when saving is true 1`] = `
         Status
       </label>
       <i
-        class="form__group--bar"
+        className="form__group--bar"
       />
     </div>
     <div

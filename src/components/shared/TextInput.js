@@ -20,7 +20,7 @@ const TextInput = ({ name, label, value, error, onChange, placeholder }) => {
       <label htmlFor={name} className="form__group--label">
         {label}
       </label>
-      <i class="form__group--bar"></i>
+      <i className="form__group--bar"></i>
       {error && <div className="alert alert-danger">{error}</div>}
     </div>
   );
