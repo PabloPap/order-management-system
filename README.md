@@ -1,9 +1,9 @@
 # Order management system
 
-The end-user can handle customer orders,
+The end-user can handle customer orders,\
 by using multiple operations: adding, deleting and editing.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
 Project data powered by json-server.   
 
 ## Available Scripts
@@ -13,7 +13,7 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode and starts the server.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.\
 Open [http://localhost:3001](http://localhost:3001) to view the mock API data.
 
 The page will reload if you make edits.\
