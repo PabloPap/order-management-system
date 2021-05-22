@@ -8,7 +8,6 @@ import OrderList from './OrderList';
 import { Redirect } from 'react-router-dom';
 import Spinner from '../shared/Spinner';
 import { toast } from 'react-toastify';
-
 function OrdersPage({ actions, statusAll, orders, loading }) {
   const [redirectToAddOrderPage, setRedirectToAddOrderPage] = useState(false);
   useEffect(() => {
@@ -35,9 +34,16 @@ function OrdersPage({ actions, statusAll, orders, loading }) {
     }
   };
 
+  const [filter, setFilter] = useState('');
+
+  const handleFilterOrder = (e) => {
+    setFilter(e.target.value);
+  };
+
   return (
     <>
       {redirectToAddOrderPage && <Redirect to="/order" />}
+
       <div className="orders">
         <div className="orders__manage">
           <h1 className="orders__title">Manage All Orders</h1>
@@ -52,7 +58,18 @@ function OrdersPage({ actions, statusAll, orders, loading }) {
         {loading ? (
           <Spinner />
         ) : (
-          <OrderList orders={orders} onDeleteClick={handleDeleteOrder} />
+          <>
+            {orders.length > 0 ? (
+              <OrderList
+                orders={orders}
+                onDeleteClick={handleDeleteOrder}
+                onFilterOrder={handleFilterOrder}
+                filter={filter}
+              />
+            ) : (
+              ''
+            )}
+          </>
         )}
       </div>
     </>
